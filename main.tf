@@ -1,6 +1,3 @@
-provider "aws" {
-  region = "us-east-1"
-}
 
 # Configure the Terraform backend with an S3 bucket
 
