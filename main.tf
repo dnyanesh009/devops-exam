@@ -10,24 +10,6 @@ terraform {
 }
 
 # -----------------------------
-# Data Sources
-# -----------------------------
-# NAT Gateway
-data "aws_nat_gateway" "nat" {
-  id = "nat-0a34a8efd5e420945"
-}
-
-# VPC
-data "aws_vpc" "vpc" {
-  id = "vpc-06b326e20d7db55f9"
-}
-
-# Lambda IAM Role
-data "aws_iam_role" "lambda" {
-  name = "DevOps-Candidate-Lambda-Role"
-}
-
-# -----------------------------
 # Network Resources
 # -----------------------------
 # Private Subnet
