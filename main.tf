@@ -83,19 +83,22 @@ resource "aws_security_group" "lambda_sg" {
   }
 }
 
+# Archive Lambda function code into a zip
+data "archive_file" "create_lambda_pkg" {
+  type        = "zip"
+  source_dir  = "lambda"  # Directory containing your Lambda code (e.g., lambda/lambda_function.py)
+  output_path = "${path.module}/lambda_function.zip"
+}
 # -----------------------------
 # Lambda Function
 # -----------------------------
 resource "aws_lambda_function" "example_lambda" {
-  function_name = "PrivateSubnetLambda"
-  runtime       = "python3.9"
+  filename         = data.archive_file.create_lambda_pkg.output_path
+  runtime       = "python3.12"
   role          = data.aws_iam_role.lambda.arn
   handler       = "lambda_function.lambda_handler"
   timeout       = 30
-
-  # Lambda code (simple hello world)
-  filename         = "lambda_function.zip"
-  source_code_hash = filebase64sha256("lambda_function.zip")
+  source_code_hash = data.archive_file.create_lambda_pkg.output_base64sha256
 
   environment {
     variables = {
