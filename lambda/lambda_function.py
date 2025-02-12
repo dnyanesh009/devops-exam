@@ -21,7 +21,7 @@ def lambda_handler(event, context):
     # Create the payload with the provided data
     payload = {
         "subnet_id": PRIVATE_SUBNET_ID,  # Use the Private Subnet ID dynamically from environment variables
-        "name": "Ankita Ghadage",  # Use your full name dynamically from environment variables
+        "name": "Ankita Ghogare",  # Use your full name dynamically from environment variables
         "email": "ankitak7721@gmail.com"  # Use your email dynamically from environment variables
     }
 
