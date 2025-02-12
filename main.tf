@@ -4,7 +4,7 @@
 terraform {
   backend "s3" {
     bucket = "467.devops.candidate.exam"
-    key    = "Ankita.Ghadage1"  # Replace with your full name
+    key    = "Ankita.Ghogare"  # Replace with your full name
     region = "ap-south-1"
   }
 }
@@ -78,7 +78,7 @@ data "archive_file" "create_lambda_pkg" {
 
 resource "aws_lambda_function" "example_lambda1" {
   filename      = data.archive_file.create_lambda_pkg.output_path
-  function_name =  "ankita-ghadage-test1" 
+  function_name =  "ankita-ghogare-test1" 
   runtime       = "python3.12"
   role          = data.aws_iam_role.lambda.arn
   handler       = "lambda_function.lambda_handler"
