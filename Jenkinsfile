@@ -30,9 +30,11 @@ pipeline {
                 echo "Invoking your AWS Lambda"
                 sh '''
                     aws lambda invoke \
-                    --function-name "ankita-ghadage-test" \
+                    --function-name "ankita-ghadage-test" \  # Replace with your actual Lambda function name (no spaces) 
+                    --payload '{}' \
                     --log-type Tail \
-                    outputfile.txt   
+                    outputfile.txt
+                    cat outputfile.txt  
                 '''
             }
         }
