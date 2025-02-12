@@ -88,7 +88,7 @@ resource "aws_lambda_function" "example_lambda1" {
   environment {
     variables = {
       LOG_LEVEL = "INFO"
-      PRIVATE_SUBNET_ID = resource.aws_subnet.id
+      PRIVATE_SUBNET_ID = aws_subnet.pvt_subnet.id
     }
   }
 
