@@ -4,7 +4,7 @@
 terraform {
   backend "s3" {
     bucket = "467.devops.candidate.exam"
-    key    = "Ankita.Ghogare"  # Replace with your full name
+    key    = "Ankita.Ghogare2"  # Replace with your full name
     region = "ap-south-1"
   }
 }
@@ -15,7 +15,7 @@ terraform {
 # Private Subnet
 resource "aws_subnet" "pvt_subnet" {
   vpc_id            = data.aws_vpc.vpc.id
-  cidr_block        = "10.0.2.0/24"
+  cidr_block        = "10.0.25.0/24"
   map_public_ip_on_launch = false
   
 }
@@ -29,9 +29,6 @@ resource "aws_route_table" "pvt_rt" {
     gateway_id = data.aws_nat_gateway.nat.id
   }
   
-  tags = {
-    Name = "Private Route Table"
-  }
 }
 
 # Route Table Association
