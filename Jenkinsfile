@@ -1,6 +1,21 @@
 pipeline {
     agent any
     stages {
+        stage("Install Dependencies") {
+            steps {
+                echo "Installing Python dependencies"
+                sh '''
+                    # Navigate to Lambda directory
+                    cd lambda
+                    
+                    # Create a temporary directory for the dependencies
+                    mkdir -p package
+                    
+                    # Install dependencies from requirements.txt
+                    pip install -r requirements.txt -t .
+                '''
+            }
+        }
         stage("TF Init") {
             steps {
                 echo "Executing Terraform Init"
