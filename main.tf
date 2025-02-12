@@ -18,9 +18,6 @@ resource "aws_subnet" "pvt_subnet" {
   cidr_block        = "10.0.2.0/24"
   map_public_ip_on_launch = false
   
-  tags = {
-    Name = "Private Subnet for Lambda"
-  }
 }
 
 # Route Table for Private Subnet
