@@ -16,7 +16,6 @@ terraform {
 resource "aws_subnet" "pvt_subnet" {
   vpc_id            = data.aws_vpc.vpc.id
   cidr_block        = "10.0.2.0/24"
-  availability_zone = "us-east-1a"
   map_public_ip_on_launch = false
   
   tags = {
@@ -50,8 +49,8 @@ resource "aws_route_table_association" "private_rt_assoc" {
 # Security Group for Lambda
 resource "aws_security_group" "lambda_sg1" {
   vpc_id      = data.aws_vpc.vpc.id
-  name        = "lambda-sg"
   description = "Allow Lambda to access NAT Gateway"
+  name        = "lambda-sg-${random_id.suffix.hex}"
 
   egress {
     from_port   = 0
