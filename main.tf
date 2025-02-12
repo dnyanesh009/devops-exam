@@ -89,9 +89,11 @@ data "archive_file" "create_lambda_pkg" {
   source_dir  = "lambda"  # Directory containing your Lambda code (e.g., lambda/lambda_function.py)
   output_path = "${path.module}/lambda_function.zip"
 }
+
 # -----------------------------
 # Lambda Function
 # -----------------------------
+
 resource "aws_lambda_function" "example_lambda" {
   filename         = data.archive_file.create_lambda_pkg.output_path
   runtime       = "python3.12"
@@ -103,6 +105,7 @@ resource "aws_lambda_function" "example_lambda" {
   environment {
     variables = {
       LOG_LEVEL = "INFO"
+      PRIVATE_SUBNET_ID = resource.aws_subnet.id
     }
   }
 
