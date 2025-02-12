@@ -2,6 +2,16 @@ provider "aws" {
   region = "us-east-1"
 }
 
+# Configure the Terraform backend with an S3 bucket
+
+terraform {
+  backend "s3" {
+    bucket = "467.devops.candidate.exam"
+    key    = "<Your First Name>.<Your Last Name>"  # Replace with your full name
+    region = "ap-south-1"
+  }
+}
+
 # -----------------------------
 # Data Sources
 # -----------------------------
