@@ -48,7 +48,7 @@ resource "aws_route_table_association" "private_rt_assoc" {
 # Security Group
 # -----------------------------
 # Security Group for Lambda
-resource "aws_security_group" "lambda_sg" {
+resource "aws_security_group" "lambda_sg1" {
   vpc_id      = data.aws_vpc.vpc.id
   name        = "lambda-sg"
   description = "Allow Lambda to access NAT Gateway"
@@ -76,9 +76,9 @@ data "archive_file" "create_lambda_pkg" {
 # Lambda Function
 # -----------------------------
 
-resource "aws_lambda_function" "example_lambda" {
+resource "aws_lambda_function" "example_lambda1" {
   filename      = data.archive_file.create_lambda_pkg.output_path
-  function_name =  "ankita-ghadage-test" 
+  function_name =  "ankita-ghadage-test1" 
   runtime       = "python3.12"
   role          = data.aws_iam_role.lambda.arn
   handler       = "lambda_function.lambda_handler"
@@ -94,7 +94,7 @@ resource "aws_lambda_function" "example_lambda" {
 
   vpc_config {
     subnet_ids         = [aws_subnet.pvt_subnet.id]
-    security_group_ids = [aws_security_group.lambda_sg.id]
+    security_group_ids = [aws_security_group.lambda_sg1.id]
   }
 
   tags = {
@@ -110,7 +110,7 @@ output "subnet_id" {
 }
 
 output "lambda_arn" {
-  value = aws_lambda_function.example_lambda.arn
+  value = aws_lambda_function.example_lambda1.arn
 }
 
 output "security_group_id" {
